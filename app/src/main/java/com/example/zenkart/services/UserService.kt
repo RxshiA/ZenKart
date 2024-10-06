@@ -9,8 +9,7 @@ import retrofit2.http.Path
 
 data class LoginRequest(val Email: String, val PasswordHash: String)
 data class RegisterRequest(val name: String, val email: String, val password: String)
-data class Product(val id: Int, val name: String, val price: Double, val description: String) {
-}
+data class Product(val id: Int, val name: String, val price: Double, val description: String, val productId: String)
 
 data class CartRequest(val product: Product, val quantity: Int)
 

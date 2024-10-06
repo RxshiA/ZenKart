@@ -1,8 +1,10 @@
 package com.example.zenkart.activities
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zenkart.api.ApiClient
@@ -22,6 +24,7 @@ class ProductDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val productId = intent.getStringExtra("productId")
+        Log.d("ProductDetailsActivity", "Product ID: $productId")
 
         if (productId != null) {
             loadProductDetails(productId)
@@ -36,9 +39,11 @@ class ProductDetailsActivity : AppCompatActivity() {
         val token = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE).getString("jwt_token", null)
         if (token != null) {
             ApiClient.userService.getProductById(productId, "Bearer $token").enqueue(object : Callback<Product> {
+                @SuppressLint("SetTextI18n")
                 override fun onResponse(call: Call<Product>, response: Response<Product>) {
                     if (response.isSuccessful) {
                         val product = response.body()
+                        Log.d("ProductDetailsActivity", "Product Details: $product")
                         if (product != null) {
                             // Display product details
                             binding.productNameTextView.text = product.name
