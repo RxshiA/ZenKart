@@ -9,9 +9,22 @@ import retrofit2.http.Path
 
 data class LoginRequest(val Email: String, val PasswordHash: String)
 data class RegisterRequest(val name: String, val email: String, val password: String)
-data class Product(val id: Int, val name: String, val price: Double, val description: String, val productId: String)
-
-data class CartRequest(val product: Product, val quantity: Int)
+data class Product(val id: Int, val productId: String, val name: String, val category: String, val vendorID: String, val quantity: Int, val lowStockAlert: Int, val isActive: Boolean, val price: Double, val description: String)
+data class ProductRequest(
+    val productId: String,
+    val name: String,
+    val category: String,
+    val description: String,
+    val price: Double,
+    val vendorID: String,
+    val quantity: Int,
+    val lowStockAlert: Int,
+    val isActive: Boolean
+)
+data class CartRequest(
+    val product: ProductRequest,
+    val quantity: Int
+)
 
 
 interface UserService {

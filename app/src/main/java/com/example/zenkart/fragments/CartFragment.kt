@@ -2,6 +2,7 @@ package com.example.zenkart.fragments
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -24,7 +25,6 @@ class CartFragment : Fragment() {
     ): View? {
         binding = FragmentCartBinding.inflate(inflater, container, false)
 
-        // Load cart items when the fragment view is created
         loadCartItems()
 
         return binding.root
@@ -37,6 +37,7 @@ class CartFragment : Fragment() {
                 override fun onResponse(call: Call<CartResponse>, response: Response<CartResponse>) {
                     if (response.isSuccessful) {
                         val cart = response.body()
+                        Log.d("CartFragment", "Cart Items: $cart")
                         // Display cart items and total
                         // You can now use binding to update the UI
                         binding.cartTotalTextView.text = "Total: $${cart?.cartTotal ?: 0}"

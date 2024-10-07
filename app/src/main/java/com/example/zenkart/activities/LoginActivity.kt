@@ -35,8 +35,9 @@ class LoginActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     if (response.isSuccessful) {
                         val token = response.body()?.token
-                        if (token != null) {
-                            saveTokenToLocalStorage(token)
+                        val id = response.body()?.id
+                        if (token != null && id != null) {
+                            saveTokenIdToLocalStorage(token, id)
                             navigateToHomeActivity()
                         } else {
                             Toast.makeText(this@LoginActivity, "Failed to retrieve token", Toast.LENGTH_SHORT).show()
@@ -54,10 +55,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     // Save the token in SharedPreferences
-    private fun saveTokenToLocalStorage(token: String) {
+    private fun saveTokenIdToLocalStorage(token: String, id: String) {
         val sharedPreferences = getSharedPreferences("MyAppPrefs", Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
         editor.putString("jwt_token", token)
+        editor.putString("user_id", id)
         editor.apply()
     }
 
