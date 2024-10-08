@@ -2,17 +2,19 @@ package com.example.zenkart.adapters
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.zenkart.R
 import com.example.zenkart.services.Product
+import com.bumptech.glide.Glide
+import com.example.zenkart.activities.ProductDetailsActivity
 
-data class Product(val id: Int, val name: String, val price: Double)
-
-class ProductAdapter(private val context: Context, private val productList: List<com.example.zenkart.services.Product>) : BaseAdapter() {
+class ProductAdapter(private val context: Context, private var productList: List<Product>) : BaseAdapter() {
 
     override fun getCount(): Int = productList.size
 
@@ -27,13 +29,34 @@ class ProductAdapter(private val context: Context, private val productList: List
         // Get the current product
         val product = getItem(position)
 
-        // Set product name and price
+        // Set product image, name, and price
         val productNameTextView = view.findViewById<TextView>(R.id.productNameTextView)
         val productPriceTextView = view.findViewById<TextView>(R.id.productPriceTextView)
+        val productImageView = view.findViewById<ImageView>(R.id.productImageView)
 
         productNameTextView.text = product.name
         productPriceTextView.text = "Price: $${product.price}"
 
+        // Load product image using Glide or any other image loading library
+        Glide.with(context)
+            .load(R.drawable.ic_product_placeholder)
+            .placeholder(R.drawable.ic_product_placeholder)
+            .into(productImageView)
+
+        // Set click listener to navigate to ProductDetailsActivity
+        view.setOnClickListener {
+            val intent = Intent(context, ProductDetailsActivity::class.java)
+            intent.putExtra("productId", product.productId)
+            context.startActivity(intent)
+        }
+
         return view
+    }
+
+    // Method to update the product list and notify changes
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateProductList(newProductList: List<Product>) {
+        productList = newProductList
+        notifyDataSetChanged()
     }
 }

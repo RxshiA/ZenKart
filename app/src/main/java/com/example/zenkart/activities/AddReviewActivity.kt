@@ -9,7 +9,6 @@ import com.example.zenkart.api.ApiClient
 import com.example.zenkart.databinding.ActivityAddReviewBinding
 import com.example.zenkart.services.ReviewRequest
 import com.example.zenkart.services.User
-import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

@@ -1,7 +1,6 @@
 package com.example.zenkart.fragments
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,9 +9,9 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.zenkart.activities.ProductDetailsActivity
-import com.example.zenkart.adapters.ProductAdapter
+import androidx.appcompat.widget.SearchView
 import com.example.zenkart.api.ApiClient
+import com.example.zenkart.adapters.ProductAdapter
 import com.example.zenkart.databinding.FragmentHomeBinding
 import com.example.zenkart.services.Product
 import retrofit2.Call
@@ -21,26 +20,44 @@ import retrofit2.Response
 
 class HomeFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private lateinit var binding: FragmentHomeBinding
+    private lateinit var productAdapter: ProductAdapter
+    private var productList: List<Product> = emptyList()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        // Load products
+        // Set up the GridView and adapter
+        productAdapter = ProductAdapter(requireContext(), productList)
+        binding.productsGridView.adapter = productAdapter
+
+        // Load products from API
         loadProducts()
 
-        // Set item click listener for ListView
-        binding.productsListView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
-            val selectedProduct = binding.productsListView.adapter.getItem(position) as Product
+        // Set item click listener for GridView
+        binding.productsGridView.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
+            val selectedProduct = productAdapter.getItem(position)
             Log.d("HomeFragment", "Selected Product: $selectedProduct")
-            val intent = Intent(requireContext(), ProductDetailsActivity::class.java)
-            intent.putExtra("productId", selectedProduct.productId) // Ensure 'id' matches your Product data class
-            startActivity(intent)
+            // Handle product selection (e.g., navigate to ProductDetailsActivity)
         }
+
+        // Set up SearchView
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                val filteredList = productList.filter {
+                    it.name.contains(newText ?: "", ignoreCase = true)
+                }
+                productAdapter.updateProductList(filteredList)
+                return true
+            }
+        })
 
         return binding.root
     }
@@ -51,10 +68,8 @@ class HomeFragment : Fragment() {
             ApiClient.userService.getAllProducts("Bearer $token").enqueue(object : Callback<List<Product>> {
                 override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                     if (response.isSuccessful) {
-                        val products = response.body() ?: emptyList()
-                        // Ensure ProductAdapter is set up correctly
-                        val adapter = ProductAdapter(requireContext(), products)
-                        binding.productsListView.adapter = adapter
+                        productList = response.body() ?: emptyList()
+                        productAdapter.updateProductList(productList)
                     } else {
                         Toast.makeText(requireContext(), "Failed to load products", Toast.LENGTH_SHORT).show()
                     }
@@ -67,10 +82,5 @@ class HomeFragment : Fragment() {
         } else {
             Toast.makeText(requireContext(), "Token not found", Toast.LENGTH_SHORT).show()
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null // Avoid memory leaks
     }
 }
