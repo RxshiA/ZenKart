@@ -28,6 +28,8 @@
         <activity android:name=".activities.PaymentActivity" android:exported="true" />
         <activity android:name=".activities.OrderDetailsActivity" android:exported="true" />
         <activity android:name=".activities.OrderListActivity" android:exported="true" />
+        <activity android:name=".activities.AddReviewActivity" android:exported="true" />
+        <activity android:name=".activities.VendorRatingsActivity" android:exported="true" />
     </application>
 
 </manifest>

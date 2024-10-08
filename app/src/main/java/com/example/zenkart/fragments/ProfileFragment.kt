@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.zenkart.activities.OrderListActivity
+import com.example.zenkart.activities.VendorRatingsActivity
 import com.example.zenkart.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
@@ -30,7 +31,7 @@ class ProfileFragment : Fragment() {
 
         // Rate Orders Click Listener
         binding.rateOrders.setOnClickListener {
-            // Implement rate orders functionality
+            startActivity(Intent(requireContext(), VendorRatingsActivity::class.java))
         }
 
         // Deactivate Account Click Listener

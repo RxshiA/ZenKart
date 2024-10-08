@@ -10,8 +10,9 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 import java.util.Date
 
+data class User(val id: String, val email: String, val passwordHash: String, val role: String, val isActive: String, val isApproved: String, val vendorReviews: List<Review>)
 data class LoginRequest(val Email: String, val PasswordHash: String)
-data class RegisterRequest(val name: String, val email: String, val password: String)
+data class RegisterRequest(val name: String, val email: String, val passwordHash: String)
 data class Product(val id: Int, val productId: String, val name: String, val category: String, val vendorID: String, val quantity: Int, val lowStockAlert: Int, val isActive: Boolean, val price: Double, val description: String)
 data class ProductRequest(
     val productId: String,
@@ -44,7 +45,9 @@ data class Order(
     val createdDate: String,
     val isCancellationRequest: Boolean
 )
-
+data class ReviewRequest(val vendorID: String, val comment: String, val rating: Int)
+data class VendorRating(val id: String, val email: String, val vendorReviews: List<Review>)
+data class Review(val customerID: String?, val rating: Int, val comment: String, val createdDate: String)
 
 interface UserService {
     @POST("api/User/CreateCustomerUser")
@@ -71,10 +74,15 @@ interface UserService {
     @GET("api/Order/ViewCustomerOrders/{userId}")
     fun getCustomerOrders(@Path("userId") userId: String, @Header("Authorization") token: String): Call<List<Order>>
 
-    @GET("api/Order/GetOrderById/{orderId}")
-    fun getOrderById(@Path("orderId") orderId: String, @Header("Authorization") token: String): Call<Order>
-
     @PATCH("api/Order/OrderCancelRequest/{orderId}")
     fun cancelOrder(@Path("orderId") orderId: String, @Header("Authorization") token: String): Call<Void>
 
+    @GET("api/VendorRating/CustomersVendorRatings")
+    fun getVendorRatings(@Header("Authorization") token: String): Call<List<VendorRating>>
+
+    @GET("api/User/GetAllUsers")
+    fun getAllVendors(@Header("Authorization") token: String): Call<List<User>>
+
+    @POST("api/VendorRating/CreateRating")
+    fun createRating(@Body request: ReviewRequest, @Header("Authorization") token: String): Call<Void>
 }

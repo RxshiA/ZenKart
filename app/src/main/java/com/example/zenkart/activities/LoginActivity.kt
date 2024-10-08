@@ -3,7 +3,6 @@ package com.example.zenkart.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.zenkart.api.ApiClient
@@ -51,6 +50,12 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this@LoginActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
+        }
+
+        binding.registerHereText.setOnClickListener {
+            // Navigate to RegisterActivity
+            val intent = Intent(this, RegisterActivity::class.java)
+            startActivity(intent)
         }
     }
 

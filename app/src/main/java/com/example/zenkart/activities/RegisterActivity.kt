@@ -1,5 +1,6 @@
 package com.example.zenkart.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -28,19 +29,18 @@ class RegisterActivity : AppCompatActivity() {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
 
-            // Validate inputs (optional)
+            // Validate inputs
             if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Call register API
             val request = RegisterRequest(name, email, password)
             ApiClient.userService.registerUser(request).enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@RegisterActivity, "Registration successful", Toast.LENGTH_SHORT).show()
-                        // Optionally, navigate to another screen (e.g. Login screen)
+                        navigateToLoginActivity()
                     } else {
                         Toast.makeText(this@RegisterActivity, "Registration failed", Toast.LENGTH_SHORT).show()
                     }
@@ -51,5 +51,16 @@ class RegisterActivity : AppCompatActivity() {
                 }
             })
         }
+
+        binding.loginHereText.setOnClickListener {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun navigateToLoginActivity() {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }
