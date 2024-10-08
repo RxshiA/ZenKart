@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.zenkart.R
 import com.example.zenkart.fragments.CartFragment
 import com.example.zenkart.fragments.HomeFragment
+import com.example.zenkart.fragments.ProfileFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class HomeActivity : AppCompatActivity() {
@@ -27,7 +28,7 @@ class HomeActivity : AppCompatActivity() {
                     true
                 }
                 R.id.navigation_profile -> {
-//                    loadFragment(ProfileFragment())
+                    loadFragment(ProfileFragment())
                     true
                 }
                 else -> false

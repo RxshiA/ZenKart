@@ -4,9 +4,11 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
+import java.util.Date
 
 data class LoginRequest(val Email: String, val PasswordHash: String)
 data class RegisterRequest(val name: String, val email: String, val password: String)
@@ -25,6 +27,22 @@ data class ProductRequest(
 data class CartRequest(
     val product: ProductRequest,
     val quantity: Int
+)
+data class OrderItem(
+    val productId: String,
+    val vendorId: String,
+    val quantity: Int,
+    val price: Double,
+    val delivaryStatus: String
+)
+data class Order(
+    val orderId: String,
+    val customerId: String,
+    val orderStatus: String,
+    val orderItems: List<OrderItem>,
+    val orderTotal: Double,
+    val createdDate: String,
+    val isCancellationRequest: Boolean
 )
 
 
@@ -49,4 +67,14 @@ interface UserService {
 
     @POST("api/Cart/CheckOutCart")
     fun checkoutCart(@Query("userId") userId: String, @Header("Authorization") token: String): Call<Void>
+
+    @GET("api/Order/ViewCustomerOrders/{userId}")
+    fun getCustomerOrders(@Path("userId") userId: String, @Header("Authorization") token: String): Call<List<Order>>
+
+    @GET("api/Order/GetOrderById/{orderId}")
+    fun getOrderById(@Path("orderId") orderId: String, @Header("Authorization") token: String): Call<Order>
+
+    @PATCH("api/Order/OrderCancelRequest/{orderId}")
+    fun cancelOrder(@Path("orderId") orderId: String, @Header("Authorization") token: String): Call<Void>
+
 }

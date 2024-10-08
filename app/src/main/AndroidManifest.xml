@@ -22,9 +22,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.RegisterActivity" android:exported="true" />
         <activity android:name=".activities.HomeActivity" android:exported="true" />
         <activity android:name=".activities.ProductDetailsActivity" android:exported="true" />
         <activity android:name=".activities.PaymentActivity" android:exported="true" />
+        <activity android:name=".activities.OrderDetailsActivity" android:exported="true" />
+        <activity android:name=".activities.OrderListActivity" android:exported="true" />
     </application>
 
 </manifest>
