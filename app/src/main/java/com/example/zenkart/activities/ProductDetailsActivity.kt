@@ -1,6 +1,7 @@
 package com.example.zenkart.activities
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -85,8 +86,9 @@ class ProductDetailsActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
                         Toast.makeText(this@ProductDetailsActivity, "Added to cart!", Toast.LENGTH_SHORT).show()
+                        navigateToHomeActivity()
+                        finish()
                     } else {
-                        // Log the detailed error message
                         val errorBody = response.errorBody()?.string()
                         Log.e("ProductDetailsActivity", "Failed to add to cart: ${response.code()}, Error: $errorBody")
                         Toast.makeText(this@ProductDetailsActivity, "Failed to add to cart: ${response.message()}", Toast.LENGTH_SHORT).show()
@@ -94,12 +96,17 @@ class ProductDetailsActivity : AppCompatActivity() {
                 }
 
                 override fun onFailure(call: Call<Void>, t: Throwable) {
-                    Log.e("ProductDetailsActivity", "Error: ${t.message}")
                     Toast.makeText(this@ProductDetailsActivity, "Error: ${t.message}", Toast.LENGTH_SHORT).show()
                 }
             })
         } else {
             Toast.makeText(this, "Product not available or token missing", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun navigateToHomeActivity() {
+        val intent = Intent(this, HomeActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 }

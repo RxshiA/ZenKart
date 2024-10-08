@@ -6,6 +6,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 data class LoginRequest(val Email: String, val PasswordHash: String)
 data class RegisterRequest(val name: String, val email: String, val password: String)
@@ -45,4 +46,7 @@ interface UserService {
 
     @GET("api/Cart/GetUserCart")
     fun getUserCart(@Header("Authorization") token: String): Call<CartResponse>
+
+    @POST("api/Cart/CheckOutCart")
+    fun checkoutCart(@Query("userId") userId: String, @Header("Authorization") token: String): Call<Void>
 }

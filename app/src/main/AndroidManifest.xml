@@ -24,6 +24,7 @@
         </activity>
         <activity android:name=".activities.HomeActivity" android:exported="true" />
         <activity android:name=".activities.ProductDetailsActivity" android:exported="true" />
+        <activity android:name=".activities.PaymentActivity" android:exported="true" />
     </application>
 
 </manifest>
