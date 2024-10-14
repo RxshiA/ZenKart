@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
             ApiClient.userService.registerUser(request).enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful) {
-                        Toast.makeText(this@RegisterActivity, "Registration successful", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@RegisterActivity, "Registration successful! Your account will be activated shortly.", Toast.LENGTH_SHORT).show()
                         navigateToLoginActivity()
                     } else {
                         Toast.makeText(this@RegisterActivity, "Registration failed", Toast.LENGTH_SHORT).show()
