@@ -37,13 +37,6 @@ class HomeFragment : Fragment() {
         // Load products from API
         loadProducts()
 
-        // Set item click listener for GridView
-        binding.productsGridView.onItemClickListener = AdapterView.OnItemClickListener { parent, _, position, _ ->
-            val selectedProduct = productAdapter.getItem(position)
-            Log.d("HomeFragment", "Selected Product: $selectedProduct")
-            // Handle product selection (e.g., navigate to ProductDetailsActivity)
-        }
-
         // Set up SearchView
         binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {

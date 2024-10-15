@@ -5,68 +5,81 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    android:background="@android:color/white">
+    android:background="@drawable/ic_bg">
 
+    <!-- Product Image -->
     <ImageView
         android:id="@+id/productImageView"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         android:scaleType="centerCrop"
-        android:contentDescription="string/product_image"
+        android:contentDescription="Product Image"
         android:layout_marginBottom="16dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/productNameTextView"
         android:src="@drawable/ic_product_placeholder" />
 
+    <!-- Product Name -->
     <TextView
         android:id="@+id/productNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Product Name"
-        android:textSize="24sp"
-        android:textColor="#333"
+        android:textSize="26sp"
+        android:textColor="#212121"
         android:textStyle="bold"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/productImageView"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Product Description -->
     <TextView
         android:id="@+id/productDescriptionTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Product Description"
-        android:textColor="#666"
+        android:text="This is a detailed product description that provides more information."
+        android:textColor="#757575"
         android:textSize="16sp"
+        android:fontFamily="@font/montserrat_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/productNameTextView"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Product Price -->
     <TextView
         android:id="@+id/productPriceTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Product Price"
-        android:textSize="20sp"
+        android:layout_marginTop="12dp"
+        android:text="$249.99"
+        android:textSize="24sp"
         android:textColor="#4CAF50"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:fontFamily="@font/montserrat_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/productDescriptionTextView"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <!-- Add to Cart Button -->
     <Button
         android:id="@+id/addToCartButton"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="56dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:text="Add to Cart"
         android:textColor="@android:color/white"
-        android:backgroundTint="@android:color/black"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/montserrat_bold"
+        android:backgroundTint="#FF5722"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/productPriceTextView"
         app:layout_constraintBottom_toBottomOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
