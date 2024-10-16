@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.zenkart.R
 import com.example.zenkart.services.CartItem
@@ -25,9 +26,13 @@ class CartAdapter(private val context: Context, private val cartItems: List<Cart
         // Set cart item details
         val productNameTextView = view.findViewById<TextView>(R.id.productNameTextView)
         val productPriceTextView = view.findViewById<TextView>(R.id.productPriceTextView)
+        val productQuantityTextView = view.findViewById<TextView>(R.id.productQuantityTextView)
+        val productImageView = view.findViewById<ImageView>(R.id.productImageView)
 
         productNameTextView.text = item.name
         productPriceTextView.text = "Price: $${item.price}"
+        productQuantityTextView.text = "Quantity: ${item.quantity}"
+        productImageView.setImageResource(R.drawable.ic_product_placeholder)
 
         return view
     }

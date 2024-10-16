@@ -77,7 +77,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:fontFamily="@font/montserrat_bold"
-        android:backgroundTint="#FF5722"
+        android:backgroundTint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />

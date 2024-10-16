@@ -10,28 +10,31 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="@drawable/ic_bg">
 
         <TextView
             android:id="@+id/orderIdTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Order ID"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="spread" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/orderTotalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:text="Order Total"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/orderIdTextView"/>
+            app:layout_constraintTop_toBottomOf="@id/orderIdTextView" />
 
         <TextView
             android:id="@+id/orderStatusTextView"
@@ -39,21 +42,24 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="Order Status"
-            android:textSize="16sp"
+            android:textSize="20sp"
+            android:textColor="@color/colorPrimary"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/orderTotalTextView"/>
+            app:layout_constraintTop_toBottomOf="@id/orderTotalTextView" />
 
         <Button
             android:id="@+id/cancelOrderButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:backgroundTint="@color/colorAccent"
             android:text="Cancel Order"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-        />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

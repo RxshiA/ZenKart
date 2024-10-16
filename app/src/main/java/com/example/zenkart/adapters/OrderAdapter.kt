@@ -24,6 +24,10 @@ class OrderAdapter(private val context: Context, private val orders: List<Order>
         val order = getItem(position)
         val orderIdTextView = view.findViewById<TextView>(R.id.orderIdTextView)
         orderIdTextView.text = order.orderId // Set the order ID or any other details
+        val orderTotalTextView = view.findViewById<TextView>(R.id.orderTotalTextView)
+        orderTotalTextView.text = order.orderTotal.toString() // Set the order total
+        val orderStatusTextView = view.findViewById<TextView>(R.id.orderStatusTextView)
+        orderStatusTextView.text = order.orderStatus // Set the order status
 
         return view
     }
