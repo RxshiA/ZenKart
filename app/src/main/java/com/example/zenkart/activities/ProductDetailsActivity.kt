@@ -6,6 +6,8 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.example.zenkart.R
 import com.example.zenkart.api.ApiClient
 import com.example.zenkart.databinding.ActivityProductDetailsBinding
 import com.example.zenkart.services.CartRequest
@@ -26,8 +28,18 @@ class ProductDetailsActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         val productId = intent.getStringExtra("productId")
+        val imageID = intent.getStringExtra("imageID")
         if (productId != null) {
             loadProductDetails(productId)
+        }
+        if (!imageID.isNullOrEmpty()) {
+            Glide.with(this)
+                .load(imageID)
+                .placeholder(R.drawable.ic_product_placeholder)
+                .error(R.drawable.ic_product_placeholder)
+                .into(binding.productImageView)
+        } else {
+            binding.productImageView.setImageResource(R.drawable.ic_product_placeholder)
         }
 
         binding.addToCartButton.setOnClickListener {
@@ -72,7 +84,8 @@ class ProductDetailsActivity : AppCompatActivity() {
                 vendorID = product!!.vendorID,
                 quantity = product!!.quantity,
                 lowStockAlert = product!!.lowStockAlert,
-                isActive = product!!.isActive
+                isActive = product!!.isActive,
+                imageID = product!!.imageID
             )
 
             val cartRequest = CartRequest(

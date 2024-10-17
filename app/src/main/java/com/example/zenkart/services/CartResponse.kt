@@ -6,7 +6,8 @@ data class CartItem(
     val vendorId: String,
     val quantity: Int,
     val price: Double,
-    val name: String
+    val name: String,
+    val productImage: String
 )
 
 data class CartResponse(

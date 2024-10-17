@@ -29,12 +29,13 @@
         </androidx.cardview.widget.CardView>
 
         <!-- Add Review Button with gradient background -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/addReviewButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Add New Review"
             android:textColor="@android:color/white"
+            android:fontFamily="@font/montserrat_bold"
             android:textSize="18sp"
             android:padding="12dp"
             android:background="@drawable/rounded_gradient_button"

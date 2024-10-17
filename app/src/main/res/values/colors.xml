@@ -12,4 +12,5 @@
     <color name="colorPrimary">#143549</color>
     <color name="colorPrimaryDark">#122c3b</color>
     <color name="buttonBackgroundColor">#FF5722</color>
+    <color name="gold">#C99200</color>
 </resources>

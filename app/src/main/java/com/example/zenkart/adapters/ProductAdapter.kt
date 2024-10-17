@@ -38,15 +38,18 @@ class ProductAdapter(private val context: Context, private var productList: List
         productPriceTextView.text = "Price: $${product.price}"
 
         // Load product image using Glide or any other image loading library
+        val imageUrl = product.imageID  // Assuming the image URL is stored in the 'imageID' field of the Product class
         Glide.with(context)
-            .load(R.drawable.ic_product_placeholder)
-            .placeholder(R.drawable.ic_product_placeholder)
+            .load(imageUrl)
+            .placeholder(R.drawable.ic_product_placeholder) // Show placeholder while loading
+            .error(R.drawable.ic_product_placeholder) // Show placeholder if there's an error
             .into(productImageView)
 
         // Set click listener to navigate to ProductDetailsActivity
         view.setOnClickListener {
             val intent = Intent(context, ProductDetailsActivity::class.java)
             intent.putExtra("productId", product.productId)
+            intent.putExtra("imageID", product.imageID)
             context.startActivity(intent)
         }
 

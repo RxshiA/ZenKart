@@ -38,7 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/trackOrders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,6 +47,7 @@
                 android:drawablePadding="8dp"
                 android:padding="16dp"
                 android:text="Track Orders"
+                android:fontFamily="@font/montserrat_regular"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -63,7 +64,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/rateOrders"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -72,6 +73,7 @@
                 android:drawablePadding="8dp"
                 android:padding="16dp"
                 android:text="Rate Orders"
+                android:fontFamily="@font/montserrat_regular"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -88,7 +90,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/deactivateAccountButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -97,6 +99,7 @@
                 android:drawablePadding="8dp"
                 android:padding="16dp"
                 android:text="Deactivate Account"
+                android:fontFamily="@font/montserrat_bold"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />

@@ -54,7 +54,7 @@
             android:layout_marginBottom="24dp"
             app:cardCornerRadius="16dp"
             app:layout_constraintTop_toBottomOf="@id/vendorCardView"
-            android:backgroundTint="@color/colorAccent">
+            android:backgroundTint="@color/white">
 
             <EditText
                 android:id="@+id/reviewEditText"
@@ -78,7 +78,7 @@
             android:layout_marginBottom="24dp"
             app:cardCornerRadius="16dp"
             app:layout_constraintTop_toBottomOf="@id/reviewCardView"
-            android:backgroundTint="@color/colorAccent">
+            android:backgroundTint="@color/white">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -103,13 +103,13 @@
                     android:numStars="5"
                     android:stepSize="1"
                     android:rating="0"
-                    android:progressTint="@color/colorAccent"
+                    android:progressTint="@color/gold"
                     android:layout_gravity="center"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
         <!-- Submit Button -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/submitReviewButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,6 +118,7 @@
             android:padding="16dp"
             android:textSize="18sp"
             android:background="@drawable/rounded_button_background"
+            android:backgroundTint="@null"
             app:layout_constraintTop_toBottomOf="@id/ratingCardView"
             app:layout_constraintBottom_toBottomOf="parent"
             android:elevation="8dp"

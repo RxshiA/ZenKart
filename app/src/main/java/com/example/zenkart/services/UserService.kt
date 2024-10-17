@@ -13,7 +13,7 @@ import java.util.Date
 data class User(val id: String, val email: String, val passwordHash: String, val role: String, val isActive: String, val isApproved: String, val vendorReviews: List<Review>)
 data class LoginRequest(val Email: String, val PasswordHash: String)
 data class RegisterRequest(val name: String, val email: String, val passwordHash: String)
-data class Product(val id: Int, val productId: String, val name: String, val category: String, val vendorID: String, val quantity: Int, val lowStockAlert: Int, val isActive: Boolean, val price: Double, val description: String)
+data class Product(val id: Int, val productId: String, val name: String, val category: String, val vendorID: String, val quantity: Int, val lowStockAlert: Int, val isActive: Boolean, val price: Double, val description: String, val imageID: String)
 data class ProductRequest(
     val productId: String,
     val name: String,
@@ -23,7 +23,8 @@ data class ProductRequest(
     val vendorID: String,
     val quantity: Int,
     val lowStockAlert: Int,
-    val isActive: Boolean
+    val isActive: Boolean,
+    val imageID: String
 )
 data class CartRequest(
     val product: ProductRequest,

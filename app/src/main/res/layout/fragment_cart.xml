@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:text="Checkout"
             android:textColor="@android:color/white"
+            android:fontFamily="@font/montserrat_regular"
             android:backgroundTint="@color/colorAccent"
             android:textStyle="bold"
             android:elevation="4dp"

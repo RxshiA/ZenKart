@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.example.zenkart.R
 import com.example.zenkart.services.CartItem
 
@@ -29,10 +30,16 @@ class CartAdapter(private val context: Context, private val cartItems: List<Cart
         val productQuantityTextView = view.findViewById<TextView>(R.id.productQuantityTextView)
         val productImageView = view.findViewById<ImageView>(R.id.productImageView)
 
+        val imageUrl = item.productImage
+        Glide.with(context)
+            .load(imageUrl)
+            .placeholder(R.drawable.ic_product_placeholder)
+            .error(R.drawable.ic_product_placeholder)
+            .into(productImageView)
+
         productNameTextView.text = item.productName
         productPriceTextView.text = "Price: $${item.price}"
         productQuantityTextView.text = "Quantity: ${item.quantity}"
-        productImageView.setImageResource(R.drawable.ic_product_placeholder)
 
         return view
     }
