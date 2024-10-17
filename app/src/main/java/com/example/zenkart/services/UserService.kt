@@ -86,4 +86,7 @@ interface UserService {
 
     @POST("api/VendorRating/CreateRating")
     fun createRating(@Body request: ReviewRequest, @Header("Authorization") token: String): Call<Void>
+
+    @PATCH("api/User/DeactivateCustomerAccount/{userID}")
+    fun deactivateCustomerAccount(@Path("userID") userId: String, @Header("Authorization") token: String): Call<Void>
 }
