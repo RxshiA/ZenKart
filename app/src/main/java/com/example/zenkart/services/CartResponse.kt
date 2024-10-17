@@ -2,6 +2,7 @@ package com.example.zenkart.services
 
 data class CartItem(
     val productId: String,
+    val productName: String,
     val vendorId: String,
     val quantity: Int,
     val price: Double,

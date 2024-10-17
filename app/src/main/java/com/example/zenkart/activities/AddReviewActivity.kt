@@ -2,6 +2,7 @@ package com.example.zenkart.activities
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -45,7 +46,8 @@ class AddReviewActivity : AppCompatActivity() {
                 override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                     if (response.isSuccessful) {
                         val vendors = response.body() ?: emptyList()
-                        vendorIds = vendors.map { it.id } // Get vendor IDs
+                        vendorIds = vendors.filter { it.role == "Vendor" }
+                            .map { it.id }
                         val adapter = ArrayAdapter(this@AddReviewActivity, android.R.layout.simple_spinner_item, vendorIds)
                         binding.vendorSpinner.adapter = adapter
                     } else {

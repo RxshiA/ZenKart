@@ -29,7 +29,7 @@ class CartAdapter(private val context: Context, private val cartItems: List<Cart
         val productQuantityTextView = view.findViewById<TextView>(R.id.productQuantityTextView)
         val productImageView = view.findViewById<ImageView>(R.id.productImageView)
 
-        productNameTextView.text = item.name
+        productNameTextView.text = item.productName
         productPriceTextView.text = "Price: $${item.price}"
         productQuantityTextView.text = "Quantity: ${item.quantity}"
         productImageView.setImageResource(R.drawable.ic_product_placeholder)
